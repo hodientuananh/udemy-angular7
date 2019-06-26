@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
+  message = 'Some Welcome Message';
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.message);
   }
 
 }
