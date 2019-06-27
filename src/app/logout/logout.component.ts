@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HardcodeAuthenticationService } from '../service/hardcode-authentication.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private hardcodeAuthenticationService: HardcodeAuthenticationService
+  ) { }
 
   ngOnInit() {
+    this.hardcodeAuthenticationService.logout();
   }
 
 }
