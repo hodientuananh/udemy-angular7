@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+export const TOKEN = 'token';
+export const AUTHENTICATED_USER = 'authenticateUser';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class BasicAuthenticationService {
 
   constructor(
@@ -12,23 +16,23 @@ export class BasicAuthenticationService {
   ) { }
 
   isUserLoggedIn(){
-    let user = sessionStorage.getItem('authenticateUser');
+    let user = sessionStorage.getItem(AUTHENTICATED_USER);
     return !(user === null);
   }
 
   getAuthenticateUser(){
-    return sessionStorage.getItem('authenticateUser');
+    return sessionStorage.getItem(AUTHENTICATED_USER);
   }
 
   getAuthenticateToken(){
     if (this.getAuthenticateUser()){
-      return sessionStorage.getItem('token');
+      return sessionStorage.getItem(TOKEN);
     }    
   }
 
   logout(){
-    sessionStorage.removeItem('authenticateUser');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem(AUTHENTICATED_USER);
+    sessionStorage.removeItem(TOKEN);
   }
 
   executeAuthenticationService(username, password){
@@ -42,8 +46,8 @@ export class BasicAuthenticationService {
       .pipe(
         map(
           data => {
-            sessionStorage.setItem('authenticateUser', username);
-            sessionStorage.setItem('token', basicAuthHeaderString);
+            sessionStorage.setItem(AUTHENTICATED_USER, username);
+            sessionStorage.setItem(TOKEN, basicAuthHeaderString);
             return data;
           }
         )
