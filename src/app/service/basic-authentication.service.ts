@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { API_URL } from '../app.constants';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticateUser';
@@ -35,6 +36,23 @@ export class BasicAuthenticationService {
     sessionStorage.removeItem(TOKEN);
   }
 
+  executeJWTAuthenticationService(username, password){
+    return this.http.post<any>(`${API_URL}/authenticate`, {
+      "username": username,
+      "password": password
+    })
+      .pipe(
+        map(
+          data => {
+            sessionStorage.setItem(AUTHENTICATED_USER, username);
+            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+            return data;
+          }
+        )
+      );
+    // console.log("execute Hello World Bean Service");
+  }
+
   executeAuthenticationService(username, password){
     let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader(username, password);
 
@@ -42,7 +60,7 @@ export class BasicAuthenticationService {
       Authorization: basicAuthHeaderString
     });
 
-    return this.http.get<AuthenticationBean>(`http://localhost:8080/basicauth`, {headers: headers})
+    return this.http.get<AuthenticationBean>(`${API_URL}/basicauth`, {headers: headers})
       .pipe(
         map(
           data => {
