@@ -9,7 +9,6 @@ import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
@@ -23,7 +22,6 @@ import { HttpIntercepteBasicAuthService } from './service/http/http-intercepte-b
     ErrorComponent,
     ListTodosComponent,
     MenuComponent,
-    FooterComponent,
     LogoutComponent,
     TodoComponent
   ],
