@@ -7,22 +7,26 @@
     <caption>My Todo List</caption>
     <thead>
       <tr>
-        <th>id</th>
-        <th>description</th>
+        <th>ID</th>
+        <th>Description</th>
         <th>Target Date</th>
-        <th>is Completed</th>
+        <th>Completed</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let todo of todos">
-        <td>{{todo.id}}</td>
-        <td>{{todo.description}}</td>
-        <td>{{todo.targetDate | date}}</td>
-        <td>{{todo.done}}</td>
-        <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button></td>
-        <td><button (click)="deleteTodo(todo.id)" class="btn btn-danger">Delete</button></td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">{{todo.id}}</td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">{{todo.description}}</td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">{{todo.targetDate | date}}</td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">{{todo.done}}</td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">
+          <button (click)="updateTodo(todo.id)" class="btn btn-info">Update</button>
+        </td>
+        <td [ngClass]="todo.done === true ? 'table-success' : 'table-warning'">
+          <button (click)="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
