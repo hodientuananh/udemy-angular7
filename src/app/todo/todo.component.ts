@@ -35,7 +35,6 @@ export class TodoComponent implements OnInit {
       this.todoService.createTodo('benkinmat', this.todo)
       .subscribe(
         response => {
-          console.log(response);
           this.router.navigate(['todos']);
         }
       )
@@ -44,7 +43,6 @@ export class TodoComponent implements OnInit {
       this.todoService.updateTodo('benkinmat', this.id, this.todo)
       .subscribe(
         response => {
-          console.log(response);
           this.router.navigate(['todos']);
         }
       )
